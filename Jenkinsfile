@@ -68,6 +68,7 @@ def isValidDeployBranch() {
 }
 
 def getBranchDetails() {
+    def BRANCH_NAME = 'develop'
     def branchDetails = [:]
     branchData = BRANCH_NAME.split('/')
     if (branchData.size() == 2) {
@@ -79,6 +80,7 @@ def getBranchDetails() {
 }
 
 def getDeploySettings() {
+    def BRANCH_NAME = 'develop'
     def deploySettings = [:]
     if (BRANCH_NAME == 'develop') { 
         deploySettings['ssh'] = "user@domain-igr.com"
@@ -99,7 +101,7 @@ def notifyDeployedVersion(String version) {
   emailext (
       subject: "Deployed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
       body: "DEPLOYED VERSION '${version}': Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]': Check console output at '${env.BUILD_URL}' [${env.BUILD_NUMBER}]",
-      to: "some-email@some-domain.com"
+      to: "christoph.boerner@botium.at"
     )
 }
 
@@ -107,7 +109,7 @@ def notifyFailed() {
   emailext (
       subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
       body: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]': Check console output at '${env.BUILD_URL}' [${env.BUILD_NUMBER}]",
-      to: "some-email@some-domain.com"
+      to: "christoph.boerner@botium.at"
     )
 }
 
